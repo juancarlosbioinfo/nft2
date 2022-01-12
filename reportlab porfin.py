@@ -1,0 +1,42 @@
+from reportlab.lib.pagesizes import A4
+from reportlab.pdfgen import canvas
+w, h = A4
+from reportlab.lib.colors import HexColor
+c = canvas.Canvas("hola-mundo.pdf", pagesize=A4)
+c.setFont("Helvetica", 10) #choose your font type and font size
+c.drawString(200, h - 50, "CERTIFICADO DE VACUNACIÓN")
+c.drawString(50, h - 100, "Nombre:")
+x=input("Nombre")
+c.drawString(50, h - 115, x)
+c.drawString(50, h - 150, "Fecha de nacimiento:")
+x=input("Fecha de nacimiento")
+c.drawString(50, h - 165, x)
+c.drawString(50, h - 200, "DNI:")
+x=input("DNI")
+c.drawString(50, h - 215, x)
+c.drawString(50, h - 250, "Nacionalidad:")
+x=input("Nacionalidad")
+c.drawString(50, h - 265, x)
+c.drawString(30, h - 300, "_______________________________________________________________________________________________")
+c.drawString(50, h - 350, "Fecha de vacunación:")
+x=input("Fecha de vacunación:")
+c.drawString(50, h - 365, x)
+c.drawString(50, h - 400, "Emisor del certificado:")
+x=input("Emisor del certificado:")
+c.drawString(50, h - 415, x)
+c.drawString(50, h - 450, "Fabricante:")
+x=input("Fabricante:")
+c.drawString(50, h - 465, x)
+c.drawString(50, h - 500, "Tipo de Vacuna:")
+x=input("Tipo de vacuna:")
+c.drawString(50, h - 515, x)
+c.drawString(50, h - 550, "Identificador del certificado:")
+i=input("Identificador del certificado")
+c.drawString(50, h - 565, i)
+c.drawImage('22121-espana-y-union-europea_400px.jpg', 500, 780, 48, 27)
+
+from reportlab_qrcode import QRCodeImage
+qr = QRCodeImage(i, size=30 * 5)
+qr.drawOn(c, 400, 600)
+c.showPage()
+c.save()
